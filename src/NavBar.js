@@ -3,7 +3,6 @@ import useToggle from "./helpers/useToggle"
 import {
   Navbar,
   NavbarBrand,
-  NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
@@ -15,7 +14,7 @@ import {
   CloseButton,
 } from 'reactstrap';
 import "./NavBar.css"
-
+import { NavLink } from 'react-router-dom';
 
 // NavBar component takes in a function to logout, user data and an array of other animal data
 // it renders a navbar based on if a user is logged in or not
@@ -28,9 +27,9 @@ function NavBar({ logout, user, other }) {
         <Navbar >
           <NavbarBrand href="/">Petly</NavbarBrand>
 
-          <NavLink href="/user">My Account</NavLink>
+          <NavLink to="/user">My Account</NavLink>
 
-          <NavLink onClick={logout}>Log out</NavLink>
+          <NavLink onClick={logout} to="/">Log out</NavLink>
 
           <div>
             <Button
@@ -46,7 +45,7 @@ function NavBar({ logout, user, other }) {
             >
               <OffcanvasHeader onClick={toggleOC}>
 
-                <NavLink href='/' className='oc-header'>Petly</NavLink>
+                <NavLink to='/' className='oc-header'>Petly</NavLink>
 
                 <CloseButton className='oc-header'></CloseButton>
               </OffcanvasHeader>
@@ -58,11 +57,13 @@ function NavBar({ logout, user, other }) {
                 <br />
                 <h3>searchs</h3>
 
-                <NavLink href="/search/Dogs">Dogs</NavLink>
-
-                <NavLink href="/search/Cats">Cats</NavLink>
-                <NavLink href="/search/Birds">Birds</NavLink>
-                <NavLink href="/search/Rabbits">Rabbits</NavLink>
+                <NavLink to="/search/Dogs">Dogs</NavLink>
+                <br />
+                <NavLink to="/search/Cats">Cats</NavLink>
+                <br />
+                <NavLink to="/search/Birds">Birds</NavLink>
+                <br />
+                <NavLink to="/search/Rabbits">Rabbits</NavLink>
 
                 <UncontrolledDropdown>
                   <DropdownToggle nav caret>
@@ -71,7 +72,10 @@ function NavBar({ logout, user, other }) {
                   <DropdownMenu end>
                     {other.barnyard.map((item, idx) => {
                       return (
-                        <DropdownItem href={`/search/${item}`} key={idx}>{item}</DropdownItem>
+                        <>
+                          <NavLink to={`/search/${item}`} key={idx}>{item}</NavLink>
+                          <br />
+                        </>
                       )
                     })}
                   </DropdownMenu>
@@ -84,7 +88,10 @@ function NavBar({ logout, user, other }) {
                   <DropdownMenu end>
                     {other.reptile.map((item, idx) => {
                       return (
-                        <DropdownItem href={`/search/${item}`} key={idx}>{item}</DropdownItem>
+                        <>
+                          <NavLink to={`/search/${item}`} key={idx}>{item}</NavLink>
+                          <br />
+                        </>
                       )
                     })}
                   </DropdownMenu>
@@ -97,7 +104,10 @@ function NavBar({ logout, user, other }) {
                   <DropdownMenu end>
                     {other.smallfurry.map((item, idx) => {
                       return (
-                        <DropdownItem href={`/search/${item}`} key={idx}>{item}</DropdownItem>
+                        <>
+                          <NavLink to={`/search/${item}`} key={idx}>{item}</NavLink>
+                          <br />
+                        </>
                       )
                     })}
                   </DropdownMenu>
@@ -110,13 +120,16 @@ function NavBar({ logout, user, other }) {
                   <DropdownMenu end>
                     {other.scalesshellsother.map((item, idx) => {
                       return (
-                        <DropdownItem href={`/search/${item}`} key={idx}>{item}</DropdownItem>
+                        <>
+                          <NavLink to={`/search/${item}`} key={idx}>{item}</NavLink>
+                          <br />
+                        </>
                       )
                     })}
                   </DropdownMenu>
                 </UncontrolledDropdown>
 
-                <NavLink href="/orgs">Organizations</NavLink>
+                <NavLink to="/orgs">Organizations</NavLink>
               </OffcanvasBody>
             </Offcanvas>
           </div>
@@ -127,9 +140,9 @@ function NavBar({ logout, user, other }) {
         <Navbar >
           <NavbarBrand href="/">Petly</NavbarBrand>
 
-          <NavLink href="/signup">Signup</NavLink>
+          <NavLink to="/signup">Signup</NavLink>
 
-          <NavLink href="/login">Login</NavLink>
+          <NavLink to="/login">Login</NavLink>
 
           <div>
             <Button
@@ -146,7 +159,7 @@ function NavBar({ logout, user, other }) {
             >
               <OffcanvasHeader onClick={toggleOC}>
 
-                <NavLink href='/' className='oc-header'>Petly</NavLink>
+                <NavLink to='/' className='oc-header'>Petly</NavLink>
 
                 <CloseButton className='oc-header'></CloseButton>
               </OffcanvasHeader>
@@ -158,11 +171,13 @@ function NavBar({ logout, user, other }) {
                 <br />
                 <h3>searchs</h3>
 
-                <NavLink href="/search/Dogs">Dogs</NavLink>
-
-                <NavLink href="/search/Cats">Cats</NavLink>
-                <NavLink href="/search/Birds">Birds</NavLink>
-                <NavLink href="/search/Rabbits">Rabbits</NavLink>
+                <NavLink to="/search/Dogs">Dogs</NavLink>
+                <br />
+                <NavLink to="/search/Cats">Cats</NavLink>
+                <br />
+                <NavLink to="/search/Birds">Birds</NavLink>
+                <br />
+                <NavLink to="/search/Rabbits">Rabbits</NavLink>
 
                 <UncontrolledDropdown>
                   <DropdownToggle nav caret>
@@ -171,7 +186,10 @@ function NavBar({ logout, user, other }) {
                   <DropdownMenu end>
                     {other.barnyard.map((item, idx) => {
                       return (
-                        <DropdownItem href={`/search/${item}`} key={idx}>{item}</DropdownItem>
+                        <>
+                          <NavLink to={`/search/${item}`} key={idx}>{item}</NavLink>
+                          <br />
+                        </>
                       )
                     })}
                   </DropdownMenu>
@@ -184,7 +202,10 @@ function NavBar({ logout, user, other }) {
                   <DropdownMenu end>
                     {other.reptile.map((item, idx) => {
                       return (
-                        <DropdownItem href={`/search/${item}`} key={idx}>{item}</DropdownItem>
+                        <>
+                          <NavLink to={`/search/${item}`} key={idx}>{item}</NavLink>
+                          <br />
+                        </>
                       )
                     })}
                   </DropdownMenu>
@@ -197,7 +218,10 @@ function NavBar({ logout, user, other }) {
                   <DropdownMenu end>
                     {other.smallfurry.map((item, idx) => {
                       return (
-                        <DropdownItem href={`/search/${item}`} key={idx}>{item}</DropdownItem>
+                        <>
+                          <NavLink to={`/search/${item}`} key={idx}>{item}</NavLink>
+                          <br />
+                        </>
                       )
                     })}
                   </DropdownMenu>
@@ -210,13 +234,16 @@ function NavBar({ logout, user, other }) {
                   <DropdownMenu end>
                     {other.scalesshellsother.map((item, idx) => {
                       return (
-                        <DropdownItem href={`/search/${item}`} key={idx}>{item}</DropdownItem>
+                        <>
+                          <NavLink to={`/search/${item}`} key={idx}>{item}</NavLink>
+                          <br />
+                        </>
                       )
                     })}
                   </DropdownMenu>
                 </UncontrolledDropdown>
 
-                <NavLink href="/orgs">Organizations</NavLink>
+                <NavLink to="/orgs">Organizations</NavLink>
 
               </OffcanvasBody>
             </Offcanvas>

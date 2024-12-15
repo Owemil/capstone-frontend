@@ -18,8 +18,7 @@ function Search() {
     const [filteredSearch, setFilteredSearch] = useState()
     const slugSpecies = species ? slugify(species) : ""
     const [searchForm, setSearchForm] = useState({
-        species: otherFilters.filterSet.has(species) ?
-            otherFilters[slugSpecies][0] : species,
+        species: !otherFilters.filterSet.has(species) ? species : otherFilters[slugSpecies][0],
         radius: "25 miles",
         sort: "Nearest",
         location: ""

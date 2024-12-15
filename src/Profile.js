@@ -83,7 +83,7 @@ function Profile({ update }) {
                 </Nav>
                 <TabContent activeTab={activeTab}>
                     <TabPane tabId="1">
-                        {editForm ? <Card className="profile-card">
+                        {!editForm ? <div> <p>Loading...</p><Spinner color="info" /></div> : <Card className="profile-card">
                             <CardBody>
                                 <Form>
                                     <FormGroup>
@@ -121,7 +121,7 @@ function Profile({ update }) {
                                     </Button>
                                 </Form>
                             </CardBody>
-                        </Card> : <div> <p>Loading...<Spinner color="info" /></p></div>}
+                        </Card>}
 
                     </TabPane>
                     <TabPane tabId="2">
@@ -134,13 +134,13 @@ function Profile({ update }) {
                         }) : <p>No favorites yet!</p>}
                     </TabPane>
                     <TabPane tabId="3">
-                        {user.favOrgs ? user.favOrgs.map((org, idx) => {
+                        {!user.favOrgs ? <p>No favorites yet!</p> : user.favOrgs.map((org, idx) => {
                             return (
                                 <div className="animal-card" key={idx}>
                                     <OrgCard fav={org} />
                                 </div>
                             )
-                        }) : <p>No favorites yet!</p>}
+                        })}
                     </TabPane>
                 </TabContent>
             </div> : <div> <p>Loading...</p><Spinner color="info" /></div>}

@@ -22,7 +22,6 @@ function App() {
   const [locData, setLocData] = useState()
   const [isLoading, setIsLoading] = useState(true)
   const [user, setUser] = useState(null)
-  const [reRender, setReRender] = useState()
   const [token, setToken] = useState()
 
   const navigate = useNavigate()
@@ -80,7 +79,7 @@ function App() {
     }
     if (!locData) locate()
 
-  }, [token, reRender])
+  }, [token])
 
   useEffect(() => {
     // function for populating nearby animals on front page
@@ -122,12 +121,11 @@ function App() {
   }
   //  logout function, empties state for token/ user and empties localStorage
   const logout = () => {
-    setUser(null)
-    setToken(null)
     PetlyApi.token = null
     localStorage.removeItem('user')
     localStorage.removeItem('token')
-    navigate('/')
+    setUser(null)
+    setToken(null)
   }
 
   // user update function for profile form. changes token state for re-render to update user info
@@ -135,7 +133,7 @@ function App() {
     const update = await PetlyApi.updateUser(`users/${user.username}`, data, 'patch')
 
     setUser(oldUser => ({ ...oldUser, update }))
-    setReRender('re-render')
+    setToken('rerender')
   }
   // filter function for Search component to get filtered animal searchs
   const filter = async (filterData, page) => {
@@ -223,7 +221,7 @@ function App() {
 
 
   return (
-    <PetlyContext.Provider value={{ user, getNearby, getAnimal, filter, otherFilters, slugify, getOrgAnimals, addFavPet, removeFavPet, addFavOrg, removeFavOrg, setReRender }}>
+    <PetlyContext.Provider value={{ user, getNearby, getAnimal, filter, otherFilters, slugify, getOrgAnimals, addFavPet, removeFavPet, addFavOrg, removeFavOrg, }}>
       <div className="App">
         <NavBar logout={logout} user={user} other={otherFilters} />
         <Routes>

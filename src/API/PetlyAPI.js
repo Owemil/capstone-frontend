@@ -15,9 +15,6 @@ class PetlyApi {
   static token;
 
   static async request(endpoint, data = {}, method = "get") {
-    console.debug("API Call:", endpoint, data, method);
-    console.log(method)
-    console.debug(method)
 
     const url = `${BASE_URL}/${endpoint}`;
     const headers = { Authorization: `Bearer ${PetlyApi.token}` };
@@ -28,7 +25,6 @@ class PetlyApi {
     try {
       return (await axios({ url, method, data, params, headers }));
     } catch (err) {
-      console.log(err)
       console.error("API Error:", err.response);
       let message = err.response.data.error.message;
       throw Array.isArray(message) ? message : [message];
@@ -69,7 +65,7 @@ class PetlyApi {
 
   static async removeFavPet(username, id, method = 'delete') {
     const data = {}
-    let res = await this.request(`users/${username}/favorites/pets/${id}`, method)
+    let res = await this.request(`users/${username}/favorites/pets/${id}`, data, method)
     return res
   }
 

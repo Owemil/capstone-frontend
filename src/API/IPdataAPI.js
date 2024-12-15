@@ -7,7 +7,6 @@ class IPdataAPI {
 
     static async getLocData() {
         let res = await axios(`${this.BASE_URL}?api-key=${this.token}`)
-        console.log(res)
         return res.data
     }
 }
